@@ -1,0 +1,162 @@
+<!--prakiraan cuaca berdasarkan titik geografis-->
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cuaca Berdasarkan Lokasi</title>
+</head>
+<body>
+    <h1>Cuaca di <span id="kota">...</span></h1>
+    <p>Negara: <span id="negara">...</span></p>
+    <p>Deskripsi: <span id="deskripsi">...</span></p>
+    <p>Suhu: <span id="suhu">...</span></p>
+    <p>Kelembapan: <span id="kelembapan">...</span></p>
+    <p>Kecepatan Angin: <span id="angin">...</span></p>
+
+    <script>
+        function fetchWeather(lat, lon) {
+            fetch(`/weather/${lat}/${lon}`)
+                .then(response => response.json())
+                .then(data => {
+                    if (data.error) {
+                        document.body.innerHTML = "<h2>Gagal mengambil data cuaca.</h2>";
+                        return;
+                    }
+
+                    document.getElementById("kota").textContent = data.Kota;
+                    document.getElementById("negara").textContent = data.Negara;
+                    document.getElementById("deskripsi").textContent = data["Deskripsi Cuaca"];
+                    document.getElementById("suhu").textContent = data.Suhu;
+                    document.getElementById("kelembapan").textContent = data.Kelembapan;
+                    document.getElementById("angin").textContent = data["Kecepatan Angin"];
+                })
+                .catch(error => {
+                    console.error("Error fetching weather data:", error);
+                    document.body.innerHTML = "<h2>Terjadi kesalahan saat mengambil data.</h2>";
+                });
+        }
+
+        function getLocation() {
+            if (navigator.geolocation) {
+                navigator.geolocation.getCurrentPosition(
+                    position => fetchWeather(position.coords.latitude, position.coords.longitude),
+                    error => {
+                        console.error("Geolocation error:", error);
+                        document.body.innerHTML = "<h2>Harap izinkan akses lokasi.</h2>";
+                    }
+                );
+            } else {
+                document.body.innerHTML = "<h2>Geolocation tidak didukung di browser ini.</h2>";
+            }
+        }
+
+        getLocation();
+    </script>
+</body>
+</html>
+
+
+<!--prakiraan cuaca-->
+<!--<!DOCTYPE html>-->
+<!--<html lang="id">-->
+<!--<head>-->
+<!--    <meta charset="UTF-8">-->
+<!--    <meta name="viewport" content="width=device-width, initial-scale=1.0">-->
+<!--    <title>Prakiraan Cuaca</title>-->
+<!--</head>-->
+<!--<body>-->
+<!--    <h1>Prakiraan Cuaca di Malang</h1>-->
+<!--    <table border="1">-->
+<!--        <thead>-->
+<!--            <tr>-->
+<!--                <th>Waktu</th>-->
+<!--                <th>Suhu</th>-->
+<!--                <th>Cuaca</th>-->
+<!--            </tr>-->
+<!--        </thead>-->
+<!--        <tbody id="forecast-table">-->
+<!--            <tr><td colspan="3">Memuat data...</td></tr>-->
+<!--        </tbody>-->
+<!--    </table>-->
+
+<!--    <script>-->
+<!--        async function fetchForecast() {-->
+<!--            try {-->
+<!--                const response = await fetch("/forecast");-->
+<!--                const data = await response.json();-->
+
+<!--                if (data.error) {-->
+<!--                    document.getElementById("forecast-table").innerHTML = "<tr><td colspan='3'>Gagal mengambil data.</td></tr>";-->
+<!--                    return;-->
+<!--                }-->
+
+<!--                let tableContent = "";-->
+<!--                data.forecast.forEach(item => {-->
+<!--                    tableContent += `-->
+<!--                        <tr>-->
+<!--                            <td>${item.Waktu}</td>-->
+<!--                            <td>${item.Suhu}</td>-->
+<!--                            <td>${item.Cuaca}</td>-->
+<!--                        </tr>-->
+<!--                    `;-->
+<!--                });-->
+
+<!--                document.getElementById("forecast-table").innerHTML = tableContent;-->
+<!--            } catch (error) {-->
+<!--                console.error("Error fetching forecast data:", error);-->
+<!--                document.getElementById("forecast-table").innerHTML = "<tr><td colspan='3'>Terjadi kesalahan.</td></tr>";-->
+<!--            }-->
+<!--        }-->
+
+<!--        fetchForecast();-->
+<!--    </script>-->
+<!--</body>-->
+<!--</html>-->
+
+
+
+<!--cuaca saat ini-->
+<!--<!DOCTYPE html>-->
+<!--<html lang="id">-->
+<!--<head>-->
+<!--    <meta charset="UTF-8">-->
+<!--    <meta name="viewport" content="width=device-width, initial-scale=1.0">-->
+<!--    <title>Cuaca Kota</title>-->
+<!--</head>-->
+<!--<body>-->
+<!--    <h1>Cuaca di <span id="kota"></span></h1>-->
+<!--    <p>Negara: <span id="negara"></span></p>-->
+<!--    <p>Deskripsi: <span id="deskripsi"></span></p>-->
+<!--    <p>Suhu: <span id="suhu"></span></p>-->
+<!--    <p>Kelembapan: <span id="kelembapan"></span></p>-->
+<!--    <p>Kecepatan Angin: <span id="angin"></span></p>-->
+
+<!--    <script>-->
+<!--        async function fetchWeather() {-->
+<!--            try {-->
+<!--                const response = await fetch("/weather");-->
+<!--                const data = await response.json();-->
+
+<!--                if (data.error) {-->
+<!--                    document.body.innerHTML = "<h2>Gagal mengambil data cuaca.</h2>";-->
+<!--                    return;-->
+<!--                }-->
+
+<!--                document.getElementById("kota").textContent = data.Kota;-->
+<!--                document.getElementById("negara").textContent = data.Negara;-->
+<!--                document.getElementById("deskripsi").textContent = data["Deskripsi Cuaca"];-->
+<!--                document.getElementById("suhu").textContent = data.Suhu;-->
+<!--                document.getElementById("kelembapan").textContent = data.Kelembapan;-->
+<!--                document.getElementById("angin").textContent = data["Kecepatan Angin"];-->
+
+<!--            } catch (error) {-->
+<!--                console.error("Error fetching weather data:", error);-->
+<!--                document.body.innerHTML = "<h2>Terjadi kesalahan saat mengambil data.</h2>";-->
+<!--            }-->
+<!--        }-->
+
+<!--        fetchWeather();-->
+<!--    </script>-->
+<!--</body>-->
+<!--</html>-->
