@@ -5,19 +5,19 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="09b0f105-35ab-4185-9563-482057661d14" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/dashboardTanah.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/profiles_settings.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/cobaAPI/__init__.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/cobaAPI/templates/index.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/cobaAPI/testAPI.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/dashboard-Tanah/main.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/dashboard-Tanah/static/script.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/dashboard-Tanah/static/style.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/dashboard-Tanah/templates/index.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/dashboard-Grafik/main.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/dashboard-Grafik/static/script.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/dashboard-Grafik/static/style.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/dashboard-Grafik/static/tut.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/dashboard-Grafik/templates/index.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/testGrafik/main.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/testGrafik/static/script.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/testGrafik/static/stylce.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/testGrafik/static/tut.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/testGrafik/templates/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -27,14 +27,26 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="HTML File" />
         <option value="Python Script" />
+        <option value="HTML File" />
       </list>
     </option>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
+  <component name="GitHubPullRequestSearchHistory">{
+  &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;OPEN&quot;,
+    &quot;assignee&quot;: &quot;LintangAprillya&quot;
+  }
+}</component>
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;https://github.com/LintangAprillya/cobaAPI.git&quot;,
+    &quot;accountId&quot;: &quot;cec83674-af6e-4c98-888f-d741e82c903b&quot;
+  }
+}</component>
   <component name="ProjectColorInfo">{
   &quot;associatedIndex&quot;: 2
 }</component>
@@ -51,11 +63,17 @@
     "Python.testAPI.executor": "Run",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "dart.analysis.tool.window.visible": "false",
-    "git-widget-placeholder": "master",
-    "last_opened_file_path": "C:/Magang BBPPMPV BOE 2025/Month2/Dashboard-SDA-master",
+    "git-widget-placeholder": "main",
+    "last_opened_file_path": "C:/Magang BBPPMPV BOE 2025/Month2/dashboardTanah/dashboard-Grafik",
     "run.code.analysis.last.selected.profile": "aDefault"
   }
 }]]></component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Magang BBPPMPV BOE 2025\Month2\dashboardTanah\testGrafik\static" />
+      <recent name="C:\Magang BBPPMPV BOE 2025\Month2\dashboardTanah\navbarAPI-Card\static" />
+    </key>
+  </component>
   <component name="SharedIndexes">
     <attachedChunks>
       <set>

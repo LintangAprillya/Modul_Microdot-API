@@ -1,0 +1,10 @@
+# Abaikan folder yang tidak ingin dipush
+.idea/
+.vscode/
+node_modules/
+env/
+__pycache__/
+logs/
+dashboard-Tanah/.idea/
+navbarAPI-Card/.idea/
+dashboard-Tanah
