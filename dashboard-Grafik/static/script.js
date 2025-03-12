@@ -1,52 +1,39 @@
-//   API
+document.addEventListener("DOMContentLoaded", function () {
+    fetchWeather();
+    fetchSensorData();
+    fetchInventory();
+    fetchMachineData();
+});
+
+// API Cuaca
 async function fetchWeather() {
     try {
         const response = await fetch('/api/weather');
         const data = await response.json();
         console.log("Data cuaca diterima:", data);
 
-        if (data.error) {
-            throw new Error(data.error);
-        }
+        if (data.error) throw new Error(data.error);
 
-        // Tentukan ikon cuaca berdasarkan deskripsi
-        let weatherIconClass = "bi bi-question-circle"; // Default
-        if (data.description.includes("clear")) {
-            weatherIconClass = "bi bi-sun";
-        } else if (data.description.includes("cloud")) {
-            weatherIconClass = "bi bi-cloud-fill";
-        } else if (data.description.includes("rain")) {
-            weatherIconClass = "bi bi-cloud-rain";
-        } else if (data.description.includes("thunderstorm")) {
-            weatherIconClass = "bi bi-cloud-lightning-rain";
-        } else if (data.description.includes("snow")) {
-            weatherIconClass = "bi bi-snow";
-        }
+        let weatherIconClass = "bi bi-question-circle";
+        if (data.description.includes("clear")) weatherIconClass = "bi bi-sun";
+        else if (data.description.includes("cloud")) weatherIconClass = "bi bi-cloud-fill";
+        else if (data.description.includes("rain")) weatherIconClass = "bi bi-cloud-rain";
+        else if (data.description.includes("thunderstorm")) weatherIconClass = "bi bi-cloud-lightning-rain";
+        else if (data.description.includes("snow")) weatherIconClass = "bi bi-snow";
 
-        // Perbarui elemen HTML
         document.getElementById('city').textContent = data.city;
         document.getElementById('weather-desc').textContent = data.description;
         document.getElementById('temperature').textContent = data.temperature;
         document.getElementById('wind-speed').textContent = data.wind_speed;
         document.getElementById('weather-icon').className = weatherIconClass;
-
     } catch (error) {
         console.error('Gagal mengambil data cuaca:', error);
         document.getElementById('weather-info').innerHTML = `<i class="bi bi-exclamation-triangle"></i> Cuaca tidak tersedia`;
     }
 }
+setInterval(fetchWeather, 10000);
 
-// Panggil saat halaman dimuat
-fetchWeather();
-
-var detik = 10; // Masukkan detik yang di ingin kan
-var refresh_time = detik * 1000; // Konversi ke milidetik
-
-setInterval(fetchWeather, refresh_time); // Perbarui setiap detik yang di setting
-
-
-
-// LOCAL
+// Data Sensor
 function fetchSensorData() {
     fetch('/sensor/data')
         .then(response => response.json())
@@ -56,21 +43,16 @@ function fetchSensorData() {
             document.getElementById("air_pressure").textContent = data.air_pressure;
             document.getElementById("altitude").textContent = data.altitude;
 
-            document.getElementById("temp2").textContent = data.temp;
-            document.getElementById("humidity2").textContent = data.humidity;
-            document.getElementById("air_pressure2").textContent = data.air_pressure;
-            document.getElementById("altitude2").textContent = data.altitude;
+            document.getElementById("temp2").textContent = data.temp2;
+            document.getElementById("humidity2").textContent = data.humidity2;
+            document.getElementById("air_pressure2").textContent = data.air_pressure2;
+            document.getElementById("altitude2").textContent = data.altitude2;
         })
         .catch(error => console.error('Error fetching sensor data:', error));
 }
-
-// Perbarui setiap 5 detik
 setInterval(fetchSensorData, 5000);
 
-// Ambil data pertama kali saat halaman dimuat
-fetchSensorData();
-
-//Grafik Mesin 1 & 2
+// Grafik Mesin 1 & 2
 const ctxMesin1 = document.getElementById("chartMesin1").getContext("2d");
 const ctxMesin2 = document.getElementById("chartMesin2").getContext("2d");
 
@@ -120,20 +102,18 @@ function updateGraph() {
             chartMesin2.data.datasets[2].data.push(data.air_pressure2);
             chartMesin2.data.datasets[3].data.push(data.altitude2);
 
-        if (chartMesin1.data.labels.length > 10) {
+            if (chartMesin1.data.labels.length > 10) {
                 chartMesin1.data.labels.shift();
                 chartMesin1.data.datasets.forEach(dataset => dataset.data.shift());
-        }
-
-        if (chartMesin2.data.labels.length > 10) {
+            }
+            if (chartMesin2.data.labels.length > 10) {
                 chartMesin2.data.labels.shift();
                 chartMesin2.data.datasets.forEach(dataset => dataset.data.shift());
-        }
+            }
 
-        chartMesin1.update();
-        chartMesin2.update();
+            chartMesin1.update();
+            chartMesin2.update();
         })
-
         .catch(error => console.error("Error fetching sensor data:", error));
 }
 setInterval(updateGraph, 5000);
@@ -161,9 +141,29 @@ async function fetchMachineData() {
             chartMesin2.data.datasets[0].data.shift();
         }
         chartMesin2.update();
-
-        } catch (error) {
+    } catch (error) {
         console.error("❌ Gagal mengambil data mesin:", error);
     }
 }
 setInterval(fetchMachineData, 5000);
+
+// Data Inventaris
+async function fetchInventory() {
+    try {
+        const response = await fetch('/api/inventory');
+        const data = await response.json();
+
+        const inventoryList = document.getElementById("inventory-list");
+        inventoryList.innerHTML = "";
+
+        data.forEach(item => {
+            const listItem = document.createElement("li");
+            listItem.innerHTML = `📦 ${item.nama}: <strong>${item.jumlah}</strong>`;
+            inventoryList.appendChild(listItem);
+        });
+
+    } catch (error) {
+        console.error("❌ Error:", error);
+    }
+}
+setInterval(fetchInventory, 10000);
